@@ -7,9 +7,9 @@ import java.util.Map;
 public class WriteSymptomDataToFile implements ISymptomWriter {
 
 	@Override
-	public void writeSymptoms(Map<String, Integer> symptoms) {
+	public void writeSymptoms(Map<String, Integer> symptoms, String outputPath) {
 		
-		try (FileWriter writer = new FileWriter ("result.out")) {
+		try (FileWriter writer = new FileWriter (outputPath)) {
 			for(Map.Entry<String, Integer> m : symptoms.entrySet()) {
 				writer.write(m.getKey() + ": " + m.getValue());
 			}
