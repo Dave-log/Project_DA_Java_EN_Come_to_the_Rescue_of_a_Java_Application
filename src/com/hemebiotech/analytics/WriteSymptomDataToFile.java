@@ -11,7 +11,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 		
 		try (FileWriter writer = new FileWriter (outputPath)) {
 			for(Map.Entry<String, Integer> m : symptoms.entrySet()) {
-				writer.write(m.getKey() + ": " + m.getValue());
+				writer.write(m.getKey() + ": " + m.getValue() + "\n");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

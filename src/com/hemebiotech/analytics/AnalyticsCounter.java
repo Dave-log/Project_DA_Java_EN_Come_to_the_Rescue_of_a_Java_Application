@@ -10,10 +10,10 @@ public class AnalyticsCounter {
 	private ISymptomReader reader;
 	private ISymptomWriter writer;
 	
-	public AnalyticsCounter(String filepath){
+	public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer){
 		
-		this.reader = new ReadSymptomDataFromFile(filepath);
-		this.writer = new WriteSymptomDataToFile();
+		this.reader = reader;
+		this.writer = writer;
 	}
 	
 	public List<String> getSymptoms(){
