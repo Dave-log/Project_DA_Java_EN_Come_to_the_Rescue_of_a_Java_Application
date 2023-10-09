@@ -18,12 +18,15 @@ public class Main {
 		
 		// Obtaining a list of symptoms from the reader
 		List<String> listSymptoms = analyticsCounter.getSymptoms();
+		
 		// Counting occurrences of each symptom and mapping them
-		Map<String, Integer> mapSymptoms = analyticsCounter.countSymptoms(listSymptoms);
+		Map<String, Integer> symptomsByCounts = analyticsCounter.countSymptoms(listSymptoms);
+		
 		// Sorting the symptoms in alphabetic order
-		Map<String, Integer> sortedSymptoms = analyticsCounter.sortSymptoms(mapSymptoms);
+		Map<String, Integer> sortedSymptoms = analyticsCounter.sortSymptoms(symptomsByCounts);
+		
 		// Writing the sorted symptoms to an output file
-		analyticsCounter.writeSymptoms(sortedSymptoms, "result.out");
+		analyticsCounter.writeSymptoms(sortedSymptoms, "resources/result.out");
 	}
-
+	
 }

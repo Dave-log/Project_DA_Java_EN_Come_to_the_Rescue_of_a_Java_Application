@@ -30,8 +30,7 @@ public class AnalyticsCounter {
      */
 	public List<String> getSymptoms(){
 		
-		List<String> listSymptoms = reader.GetSymptoms();
-		return listSymptoms;
+		return reader.getSymptoms();
 	}
 	
 	/**
@@ -43,37 +42,37 @@ public class AnalyticsCounter {
      */
 	public Map<String, Integer> countSymptoms(List<String> symptoms){
 		
-		Map<String, Integer> mapSymptoms = new HashMap<>();
+		final Map<String, Integer> symptomsByCounts = new HashMap<>();
 		
 		for(String symptom: symptoms) {
 			// If symptom is already mapped, the "putIfAbstent" method will do nothing.
-			mapSymptoms.putIfAbsent(symptom, 0);
-			mapSymptoms.put(symptom, mapSymptoms.get(symptom) + 1);
+			symptomsByCounts.putIfAbsent(symptom, 0);
+			symptomsByCounts.put(symptom, symptomsByCounts.get(symptom) + 1);
 		}
 		
-		return mapSymptoms;
+		return symptomsByCounts;
 	}
 	
 	/**
      * Sorts the provided Map of symptoms in alphabetic order (by key).
      * 
-     * @param symptoms A Map<String, Integer> with symptoms and their counts.
+     * @param symptomsByCounts A Map<String, Integer> with symptoms and their counts.
      * @return A sorted Map<String, Integer> in alphabetic order.
      */
-	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms){
+	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptomsByCounts){
 		
-		Map<String, Integer> sortedSymptoms = new TreeMap<>(symptoms);
-		return sortedSymptoms;
+		return new TreeMap<>(symptomsByCounts);
 	}
 	
 	/**
      * Writes the provided Map of symptoms and their counts to the specified output file.
      * 
-     * @param symptoms A Map<String, Integer> with symptoms and their counts.
+     * @param symptomsByCounts A Map<String, Integer> with symptoms and their counts.
      * @param outputPath The path to the output file where the data will be written.
      */
-	public void writeSymptoms(Map<String, Integer> symptoms, String outputPath) {
+	public void writeSymptoms(Map<String, Integer> symptomsByCounts, String outputPath) {
 		
-		writer.writeSymptoms(symptoms, outputPath);
+		writer.writeSymptoms(symptomsByCounts, outputPath);
 	}
+	
 }
