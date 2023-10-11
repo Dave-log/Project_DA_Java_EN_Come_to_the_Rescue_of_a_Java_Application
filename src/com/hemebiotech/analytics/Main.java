@@ -1,5 +1,7 @@
 package com.hemebiotech.analytics;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +14,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		ISymptomReader reader = new ReadSymptomDataFromFile("resources/symptoms.txt");
+		Path symptomFilePath = Paths.get("resources/symptoms.txt");
+		Path outputFilePath = Paths.get("resources/result.out");
+		ISymptomReader reader = new ReadSymptomDataFromFile(symptomFilePath);
 		ISymptomWriter writer = new WriteSymptomDataToFile();
 		AnalyticsCounter analyticsCounter = new AnalyticsCounter(reader, writer);
 		
@@ -26,7 +30,7 @@ public class Main {
 		Map<String, Integer> sortedSymptoms = analyticsCounter.sortSymptoms(symptomsByCounts);
 		
 		// Writing the sorted symptoms to an output file
-		analyticsCounter.writeSymptoms(sortedSymptoms, "resources/result.out");
+		analyticsCounter.writeSymptoms(sortedSymptoms, outputFilePath);
 	}
 	
 }

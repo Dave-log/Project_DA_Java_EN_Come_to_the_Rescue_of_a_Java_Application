@@ -1,7 +1,9 @@
 package com.hemebiotech.analytics;
 
-import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
 
 /**
@@ -21,17 +23,18 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
      * @throws IOException If an I/O error occurs while writing to the file.
      */
 	@Override
-	public void writeSymptoms(Map<String, Integer> symptomsByCounts, String outputPath) {
+	public void writeSymptoms(Map<String, Integer> symptomsByCounts, Path outputPath) {
 		// Writing each (Key, Value) pair to the file
-		try (FileWriter writer = new FileWriter (outputPath)) {		
+		try (BufferedWriter writer = Files.newBufferedWriter(outputPath)) {	
+			
 			for(Map.Entry<String, Integer> m : symptomsByCounts.entrySet()) {
 				writer.write(m.getKey() + ": " + m.getValue() + "\n");
 			}
-
+			System.out.println("Writing successfull.");
+			
 		} catch (IOException e) {
 			System.err.println("Error while writing into file " + e.getMessage() + " caused by " + e.getCause());
 		}
-		System.out.println("Writing successfull.");
 	}
 
 }

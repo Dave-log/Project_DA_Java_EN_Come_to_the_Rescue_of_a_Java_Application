@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.List;
@@ -70,7 +71,7 @@ public class AnalyticsCounter {
      * @param symptomsByCounts A Map<String, Integer> with symptoms and their counts.
      * @param outputPath The path to the output file where the data will be written.
      */
-	public void writeSymptoms(Map<String, Integer> symptomsByCounts, String outputPath) {
+	public void writeSymptoms(Map<String, Integer> symptomsByCounts, Path outputPath) {
 		
 		writer.writeSymptoms(symptomsByCounts, outputPath);
 	}

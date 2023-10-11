@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import java.nio.file.Path;
 import java.util.Map;
 
 /**
@@ -13,5 +14,5 @@ public interface ISymptomWriter {
      * @param symptoms A Map<String, Integer> with symptoms and their counts.
      * @param path The path to the file where the symptom data will be written.
      */
-	public void writeSymptoms(Map<String, Integer> symptoms, String path);
+	public void writeSymptoms(Map<String, Integer> symptoms, Path path);
 }

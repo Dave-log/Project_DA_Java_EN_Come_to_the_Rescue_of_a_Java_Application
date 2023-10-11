@@ -1,8 +1,9 @@
 package com.hemebiotech.analytics;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +13,12 @@ import java.util.List;
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
-	private String filePath;
+	private Path filePath;
 	
 	/**
 	 * @param filePath a full or partial path to file with symptom strings in it, one per line
 	 */
-	public ReadSymptomDataFromFile (String filePath) {
+	public ReadSymptomDataFromFile (Path filePath) {
 		this.filePath = filePath;
 	}
 	
@@ -33,7 +34,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		
 		if (filePath != null) {
 			
-			try(BufferedReader reader = new BufferedReader (new FileReader(filePath))) {			
+			try(BufferedReader reader = Files.newBufferedReader(filePath)) {			
 				String line = reader.readLine();
 				
 				while (line != null) {
